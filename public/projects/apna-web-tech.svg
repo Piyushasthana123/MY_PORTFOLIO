@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <rect width="800" height="450" fill="#0f172a"/>
+  <rect x="40" y="40" width="720" height="370" rx="16" fill="#1e293b" stroke="#334155"/>
+  <text x="400" y="180" text-anchor="middle" fill="#38bdf8" font-family="system-ui,sans-serif" font-size="48" font-weight="700">Apna Web Tech</text>
+  <text x="400" y="240" text-anchor="middle" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="24">Modern Web Experience</text>
+  <rect x="280" y="280" width="240" height="48" rx="8" fill="#6366f1"/>
+  <text x="400" y="312" text-anchor="middle" fill="white" font-family="system-ui,sans-serif" font-size="18" font-weight="600">apnawebtech.online</text>
+</svg>

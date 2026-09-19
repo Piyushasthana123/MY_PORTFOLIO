@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <rect width="800" height="450" fill="#fafafa"/>
+  <rect x="0" y="0" width="800" height="64" fill="#fff" stroke="#e5e7eb"/>
+  <text x="40" y="42" fill="#111827" font-family="system-ui,sans-serif" font-size="22" font-weight="700">Shop</text>
+  <rect x="40" y="100" width="220" height="280" rx="12" fill="#fff" stroke="#e5e7eb"/>
+  <rect x="50" y="110" width="200" height="140" rx="8" fill="#f3f4f6"/>
+  <rect x="290" y="100" width="220" height="280" rx="12" fill="#fff" stroke="#e5e7eb"/>
+  <rect x="300" y="110" width="200" height="140" rx="8" fill="#f3f4f6"/>
+  <rect x="540" y="100" width="220" height="280" rx="12" fill="#fff" stroke="#e5e7eb"/>
+  <rect x="550" y="110" width="200" height="140" rx="8" fill="#f3f4f6"/>
+  <text x="150" y="290" text-anchor="middle" fill="#374151" font-family="system-ui,sans-serif" font-size="16" font-weight="600">Product</text>
+  <text x="400" y="290" text-anchor="middle" fill="#374151" font-family="system-ui,sans-serif" font-size="16" font-weight="600">Product</text>
+  <text x="650" y="290" text-anchor="middle" fill="#374151" font-family="system-ui,sans-serif" font-size="16" font-weight="600">Product</text>
+</svg>

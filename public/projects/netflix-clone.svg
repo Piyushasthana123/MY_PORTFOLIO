@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <rect width="800" height="450" fill="#0a0a0a"/>
+  <rect x="0" y="0" width="800" height="80" fill="#141414"/>
+  <text x="40" y="52" fill="#e50914" font-family="system-ui,sans-serif" font-size="32" font-weight="800">NETFLIX</text>
+  <rect x="40" y="120" width="160" height="90" rx="4" fill="#1a1a1a"/>
+  <rect x="220" y="120" width="160" height="90" rx="4" fill="#1a1a1a"/>
+  <rect x="400" y="120" width="160" height="90" rx="4" fill="#1a1a1a"/>
+  <rect x="580" y="120" width="160" height="90" rx="4" fill="#1a1a1a"/>
+  <rect x="40" y="240" width="720" height="160" rx="8" fill="#1a1a1a"/>
+  <text x="400" y="330" text-anchor="middle" fill="#666" font-family="system-ui,sans-serif" font-size="20">Netflix Clone UI</text>
+</svg>
