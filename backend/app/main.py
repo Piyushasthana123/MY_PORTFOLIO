@@ -39,8 +39,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=settings_bootstrap.origin_list,
     allow_credentials=False,
-    allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["Content-Type", "Accept"],
+    allow_methods=["*"],
+    allow_headers=["*"],
     max_age=600,
 )
 

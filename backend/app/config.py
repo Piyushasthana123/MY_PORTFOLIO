@@ -19,7 +19,7 @@ class Settings(BaseSettings):
 
     app_name: str = "Piyush Portfolio API"
     environment: str = "development"
-    cors_origins: str = "http://localhost:5173,http://127.0.0.1:5173,http://localhost:5174,http://127.0.0.1:5174"
+    cors_origins: str = "*"
     gmail_address: str = ""
     gmail_app_password: str = ""
     mail_to: str = "piyushasthana444@gmail.com"
@@ -30,6 +30,8 @@ class Settings(BaseSettings):
 
     @property
     def origin_list(self) -> list[str]:
+        if not self.cors_origins or self.cors_origins.strip() == "*":
+            return ["*"]
         return [origin.strip() for origin in self.cors_origins.split(",") if origin.strip()]
 
     @property

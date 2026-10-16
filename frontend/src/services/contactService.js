@@ -1,4 +1,6 @@
-const API_BASE = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
+const isLocal = typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
+const DEFAULT_API = isLocal ? "" : "https://my-portfolio-hnv5.onrender.com";
+const API_BASE = (import.meta.env.VITE_API_URL || DEFAULT_API).replace(/\/$/, "");
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function validateContactForm({ name, email, subject, message }) {
