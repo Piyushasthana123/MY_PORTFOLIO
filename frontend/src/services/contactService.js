@@ -50,20 +50,33 @@ function parseApiError(payload, fallback) {
 }
 
 export async function submitContactForm(formData) {
-  const response = await fetch(`${API_BASE}/api/contact`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify({
-      name: formData.name.trim(),
-      email: formData.email.trim(),
-      subject: formData.subject.trim(),
-      message: formData.message.trim(),
-      website: formData.website || "",
-    }),
-  });
+  let response;
+  try {
+    response = await fetch(`${API_BASE}/api/contact`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        subject: formData.subject.trim(),
+        message: formData.message.trim(),
+        website: formData.website || "",
+      }),
+    });
+  } catch (err) {
+    const isLocal = typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
+    if (!API_BASE && !isLocal) {
+      throw new Error(
+        "Backend API URL is not set. Please add VITE_API_URL in your Vercel Environment Variables."
+      );
+    }
+    throw new Error(
+      "Unable to connect to the backend server. Please verify your FastAPI backend is running and CORS is allowed."
+    );
+  }
 
   const payload = await response.json().catch(() => ({}));
 
