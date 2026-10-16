@@ -2,6 +2,7 @@ from email.message import EmailMessage
 from html import escape
 
 import aiosmtplib
+import certifi
 
 from app.config import Settings
 
@@ -58,4 +59,5 @@ async def send_contact_email(payload, settings: Settings) -> None:
         username=settings.gmail_address,
         password=settings.gmail_app_password,
         start_tls=True,
+        cert_bundle=certifi.where(),
     )

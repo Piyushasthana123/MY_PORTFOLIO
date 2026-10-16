@@ -30,9 +30,9 @@ export default function ProjectCard({ project, index = 0, featured = false }) {
         </h3>
         <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{project.description}</p>
 
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-4 flex flex-wrap gap-2.5">
           {project.technologies.map((tech) => (
-            <span key={tech} className="chip-surface rounded-full px-2.5 py-1 text-[11px] text-muted">
+            <span key={tech} className="chip-surface rounded-full px-3 py-1 text-[11px] tracking-wide text-muted">
               {tech}
             </span>
           ))}

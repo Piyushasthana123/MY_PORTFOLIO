@@ -55,17 +55,23 @@ def test_honeypot_skips_email():
 
 
 def test_missing_mail_config_returns_503():
-    response = client.post(
-        "/api/contact",
-        json={
-            "name": "Ada Lovelace",
-            "email": "ada@example.com",
-            "subject": "Hello there",
-            "message": "This is a real looking message.",
-        },
+    app.dependency_overrides[get_settings] = lambda: get_settings().model_copy(
+        update={"gmail_address": "", "gmail_app_password": ""}
     )
-    assert response.status_code == 503
-    assert response.json()["success"] is False
+    try:
+        response = client.post(
+            "/api/contact",
+            json={
+                "name": "Ada Lovelace",
+                "email": "ada@example.com",
+                "subject": "Hello there",
+                "message": "This is a real looking message.",
+            },
+        )
+        assert response.status_code == 503
+        assert response.json()["success"] is False
+    finally:
+        app.dependency_overrides.pop(get_settings, None)
 
 
 def test_successful_send():

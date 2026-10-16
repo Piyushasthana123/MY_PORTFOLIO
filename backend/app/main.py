@@ -70,6 +70,16 @@ async def http_handler(_request: Request, exc: HTTPException):
     )
 
 
+@app.get("/")
+async def root():
+    return {
+        "status": "ok",
+        "service": "Piyush Asthana Portfolio Backend API",
+        "docs": "/docs",
+        "health": "/health",
+    }
+
+
 @app.get("/health")
 async def health(settings: Settings = Depends(get_settings)):
     return {

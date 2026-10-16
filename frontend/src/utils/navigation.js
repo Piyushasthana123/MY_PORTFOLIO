@@ -1,10 +1,9 @@
 export const navLinks = [
-  { id: "home", label: "Home" },
-  { id: "about", label: "About" },
-  { id: "skills", label: "Skills" },
-  { id: "projects", label: "Projects" },
-  { id: "github", label: "GitHub" },
-  { id: "contact", label: "Contact" },
+  { id: "about", label: "ABOUT ME" },
+  { id: "projects", label: "PROJECTS" },
+  { id: "skills", label: "SKILLS" },
+  { id: "journey", label: "HONORS & PATH" },
+  { id: "contact", label: "CONTACT ME" },
 ];
 
 export function scrollToSection(sectionId) {

@@ -1,0 +1,323 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Outfit", "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+:root,
+[data-theme="dark"] {
+  --bg-page: #0f0a07;
+  --bg-elevated: #19100a;
+  --bg-card: #22150d;
+  --bg-footer: #0c0704;
+  --bg-nav-scrolled: rgba(15, 10, 7, 0.92);
+  --bg-surface-muted: rgba(216, 155, 92, 0.08);
+  --bg-glass: rgba(25, 16, 10, 0.85);
+  --bg-chip: rgba(216, 155, 92, 0.1);
+  --bg-input: #19100a;
+  --bg-terminal: #140b06;
+  --text-heading: #fcf8f2;
+  --text-body: #ded2c5;
+  --text-muted: #ab9b8c;
+  --text-faint: #827263;
+  --text-accent-label: #e29f58;
+  --border-theme: rgba(216, 155, 92, 0.22);
+  --border-subtle: rgba(216, 155, 92, 0.12);
+  --shadow-nav: rgba(0, 0, 0, 0.5);
+  --selection-bg: rgba(216, 155, 92, 0.35);
+  --accent: #d89650;
+  --accent-hover: #e8ab6a;
+  --accent-active: #c5823c;
+  --ring: rgba(216, 155, 92, 0.45);
+  --hero-wash: rgba(216, 155, 92, 0.15);
+  --hero-bg: radial-gradient(ellipse 85% 65% at 65% 30%, rgba(216, 150, 80, 0.15) 0%, rgba(15, 10, 7, 0.98) 70%);
+  --about-bg: linear-gradient(180deg, rgba(15, 10, 7, 0.98) 0%, rgba(25, 16, 10, 0.96) 50%, rgba(15, 10, 7, 0.98) 100%);
+  --projects-bg: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(216, 150, 80, 0.09) 0%, rgba(15, 10, 7, 0.98) 80%);
+  --skills-bg: linear-gradient(180deg, rgba(15, 10, 7, 0.98) 0%, rgba(24, 15, 9, 0.96) 50%, rgba(15, 10, 7, 0.98) 100%);
+  --journey-bg: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(216, 150, 80, 0.09) 0%, rgba(15, 10, 7, 0.98) 75%);
+  --contact-bg: linear-gradient(180deg, rgba(15, 10, 7, 0.98) 0%, rgba(22, 14, 9, 0.98) 100%);
+  --success-bg: rgba(46, 125, 90, 0.14);
+  --success-border: rgba(46, 125, 90, 0.28);
+  --success-text: #b7e0cb;
+  --error-bg: rgba(180, 70, 62, 0.14);
+  --error-border: rgba(180, 70, 62, 0.3);
+  --error-text: #f0b8b2;
+  --warn-bg: rgba(216, 155, 92, 0.14);
+  --warn-border: rgba(216, 155, 92, 0.32);
+  --warn-text: #f3d7b8;
+}
+
+[data-theme="light"] {
+  --bg-page: #fcf9f5;
+  --bg-elevated: #ffffff;
+  --bg-card: #f3ede2;
+  --bg-footer: #e9decb;
+  --bg-nav-scrolled: rgba(252, 249, 245, 0.94);
+  --bg-surface-muted: rgba(160, 90, 25, 0.07);
+  --bg-glass: rgba(255, 255, 255, 0.92);
+  --bg-chip: rgba(160, 90, 25, 0.08);
+  --bg-input: #ffffff;
+  --bg-terminal: #23160e;
+  --text-heading: #140d07;
+  --text-body: #342518;
+  --text-muted: #5c4a3b;
+  --text-faint: #7d6b5c;
+  --text-accent-label: #a35d1c;
+  --border-theme: rgba(160, 90, 25, 0.2);
+  --border-subtle: rgba(160, 90, 25, 0.1);
+  --shadow-nav: rgba(40, 25, 15, 0.08);
+  --selection-bg: rgba(216, 150, 80, 0.28);
+  --accent: #b26418;
+  --accent-hover: #96510f;
+  --accent-active: #7c4009;
+  --ring: rgba(178, 100, 24, 0.35);
+  --hero-wash: rgba(216, 150, 80, 0.12);
+  --hero-bg: radial-gradient(ellipse 85% 65% at 65% 30%, rgba(216, 150, 80, 0.18) 0%, rgba(252, 249, 245, 0.98) 70%);
+  --about-bg: linear-gradient(180deg, rgba(252, 249, 245, 0.98) 0%, rgba(243, 237, 226, 0.96) 50%, rgba(252, 249, 245, 0.98) 100%);
+  --projects-bg: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(216, 150, 80, 0.12) 0%, rgba(252, 249, 245, 0.98) 80%);
+  --skills-bg: linear-gradient(180deg, rgba(252, 249, 245, 0.98) 0%, rgba(244, 237, 227, 0.96) 50%, rgba(252, 249, 245, 0.98) 100%);
+  --journey-bg: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(216, 150, 80, 0.12) 0%, rgba(252, 249, 245, 0.98) 75%);
+  --contact-bg: linear-gradient(180deg, rgba(252, 249, 245, 0.98) 0%, rgba(242, 234, 220, 0.98) 100%);
+  --success-bg: rgba(46, 125, 90, 0.12);
+  --success-border: rgba(46, 125, 90, 0.26);
+  --success-text: #195e3e;
+  --error-bg: rgba(180, 70, 62, 0.12);
+  --error-border: rgba(180, 70, 62, 0.26);
+  --error-text: #8e2720;
+  --warn-bg: rgba(180, 130, 50, 0.12);
+  --warn-border: rgba(180, 130, 50, 0.26);
+  --warn-text: #6b4e13;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-body);
+    font-family: var(--font-sans);
+    @apply antialiased;
+    transition:
+      background-color 0.4s ease,
+      color 0.4s ease;
+  }
+
+  ::selection {
+    background-color: var(--selection-bg);
+    color: var(--text-heading);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+
+  /* Enhanced spacing and breathing room for small size text */
+  small,
+  .text-xs,
+  [class*="text-[9px]"],
+  [class*="text-[10px]"],
+  [class*="text-[11px]"],
+  [class*="text-[12px]"] {
+    letter-spacing: 0.03em;
+    line-height: 1.6;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .theme-transition {
+    transition:
+      background-color 0.4s ease,
+      color 0.4s ease,
+      border-color 0.4s ease,
+      box-shadow 0.4s ease;
+  }
+
+  .bg-page {
+    background-color: var(--bg-page);
+  }
+
+  .bg-heading {
+    background-color: var(--text-heading);
+  }
+
+  .text-page {
+    color: var(--bg-page);
+  }
+
+  .bg-footer {
+    background-color: var(--bg-footer);
+  }
+
+  .bg-nav-scrolled {
+    background-color: var(--bg-nav-scrolled);
+  }
+
+  .bg-surface-muted {
+    background-color: var(--bg-surface-muted);
+  }
+
+  .bg-elevated {
+    background-color: var(--bg-elevated);
+  }
+
+  .text-heading {
+    color: var(--text-heading);
+  }
+
+  .text-body {
+    color: var(--text-body);
+  }
+
+  .text-muted {
+    color: var(--text-muted);
+  }
+
+  .text-faint {
+    color: var(--text-faint);
+  }
+
+  .text-accent-label {
+    color: var(--text-accent-label);
+  }
+
+  .border-theme {
+    border-color: var(--border-theme);
+  }
+
+  .border-subtle {
+    border-color: var(--border-subtle);
+  }
+
+  .site-wrap {
+    @apply mx-auto w-full max-w-[1080px] px-5 sm:px-8;
+  }
+
+  .hairline {
+    height: 1px;
+    background: var(--border-theme);
+  }
+
+  .surface-card {
+    border: 1px solid var(--border-theme);
+    background-color: var(--bg-elevated);
+    transition:
+      border-color 0.25s ease,
+      box-shadow 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .surface-card:hover {
+    border-color: color-mix(in srgb, var(--accent) 28%, var(--border-theme));
+  }
+
+  .chip-surface {
+    border: 1px solid var(--border-subtle);
+    background-color: var(--bg-chip);
+  }
+
+  .form-control {
+    border: 1px solid var(--border-theme);
+    background-color: var(--bg-input);
+    color: var(--text-heading);
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .form-control::placeholder {
+    color: var(--text-faint);
+  }
+
+  .form-control:focus {
+    outline: none;
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--border-theme));
+    box-shadow: 0 0 0 3px var(--ring);
+  }
+
+  .btn-primary {
+    background-color: var(--accent);
+    color: #140a04;
+    font-weight: 600;
+    transition:
+      background-color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    background-color: var(--accent-hover);
+    box-shadow: 0 4px 20px rgba(198, 143, 86, 0.35);
+  }
+
+  .btn-primary:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  .btn-secondary {
+    border: 1px solid var(--border-theme);
+    background-color: var(--bg-card);
+    color: var(--text-heading);
+    transition:
+      border-color 0.2s ease,
+      background-color 0.2s ease,
+      color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--bg-surface-muted);
+    border-color: var(--accent);
+    color: var(--text-heading);
+  }
+
+  .alert-success {
+    border: 1px solid var(--success-border);
+    background: var(--success-bg);
+    color: var(--success-text);
+  }
+
+  .alert-error {
+    border: 1px solid var(--error-border);
+    background: var(--error-bg);
+    color: var(--error-text);
+  }
+
+  .alert-warn {
+    border: 1px solid var(--warn-border);
+    background: var(--warn-bg);
+    color: var(--warn-text);
+  }
+
+  .honeypot {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body,
+  .theme-transition,
+  .surface-card,
+  .form-control,
+  .btn-primary,
+  .btn-secondary {
+    transition-duration: 0.01ms !important;
+  }
+}
