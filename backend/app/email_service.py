@@ -1,13 +1,17 @@
 from email.message import EmailMessage
 from html import escape
+import logging
 
 import aiosmtplib
 import certifi
+import httpx
 
 from app.config import Settings
 
+logger = logging.getLogger("portfolio.email")
 
-def build_email(payload, settings: Settings) -> EmailMessage:
+
+def build_email_content(payload):
     safe_name = escape(payload.name)
     safe_email = escape(str(payload.email))
     safe_subject = escape(payload.subject)
@@ -36,7 +40,11 @@ def build_email(payload, settings: Settings) -> EmailMessage:
       </body>
     </html>
     """
+    return text_body, html_body
 
+
+def build_email(payload, settings: Settings) -> EmailMessage:
+    text_body, html_body = build_email_content(payload)
     message = EmailMessage()
     message["From"] = f"Portfolio <{settings.gmail_address}>"
     message["To"] = settings.mail_to
@@ -47,10 +55,66 @@ def build_email(payload, settings: Settings) -> EmailMessage:
     return message
 
 
+async def send_via_resend(payload, settings: Settings) -> None:
+    text_body, html_body = build_email_content(payload)
+    async with httpx.AsyncClient(timeout=15.0) as client:
+        res = await client.post(
+            "https://api.resend.com/emails",
+            headers={
+                "Authorization": f"Bearer {settings.resend_api_key}",
+                "Content-Type": "application/json",
+            },
+            json={
+                "from": "Portfolio Contact <onboarding@resend.dev>",
+                "to": [settings.mail_to],
+                "reply_to": str(payload.email),
+                "subject": f"Portfolio: {payload.subject}",
+                "text": text_body,
+                "html": html_body,
+            },
+        )
+        if not res.is_success:
+            logger.error("Resend API failed: %s", res.text)
+            raise RuntimeError(f"Resend API error: {res.text}")
+
+
+async def send_via_web3forms(payload, settings: Settings) -> None:
+    async with httpx.AsyncClient(timeout=15.0) as client:
+        res = await client.post(
+            "https://api.web3forms.com/submit",
+            json={
+                "access_key": settings.web3forms_access_key,
+                "name": payload.name,
+                "email": str(payload.email),
+                "subject": f"Portfolio: {payload.subject}",
+                "message": payload.message,
+                "from_name": f"{payload.name} (Portfolio)",
+                "replyto": str(payload.email),
+            },
+        )
+        if not res.is_success:
+            logger.error("Web3Forms API failed: %s", res.text)
+            raise RuntimeError(f"Web3Forms API error: {res.text}")
+        data = res.json()
+        if not data.get("success"):
+            raise RuntimeError(f"Web3Forms failed: {data.get('message')}")
+
+
 async def send_contact_email(payload, settings: Settings) -> None:
     if not settings.mail_configured:
         raise RuntimeError("Email is not configured on the server.")
 
+    # 1. Resend API (HTTPS Port 443 - works on Render Free Tier)
+    if settings.resend_api_key:
+        await send_via_resend(payload, settings)
+        return
+
+    # 2. Web3Forms API (HTTPS Port 443 - works on Render Free Tier)
+    if settings.web3forms_access_key:
+        await send_via_web3forms(payload, settings)
+        return
+
+    # 3. Gmail SMTP (requires unblocked SMTP port 587)
     message = build_email(payload, settings)
     await aiosmtplib.send(
         message,

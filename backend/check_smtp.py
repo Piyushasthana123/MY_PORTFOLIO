@@ -11,7 +11,12 @@ async def main():
     print("Checking Portfolio Email Delivery Configuration...")
     print(f"Gmail Address: {settings.gmail_address}")
     print(f"Recipient (MAIL_TO): {settings.mail_to}")
-    print(f"SMTP Host: {settings.smtp_host}:{settings.smtp_port}")
+    if settings.resend_api_key:
+        print("Provider: Resend API (HTTPS Port 443 - Cloud Safe)")
+    elif settings.web3forms_access_key:
+        print("Provider: Web3Forms API (HTTPS Port 443 - Cloud Safe)")
+    else:
+        print(f"Provider: Gmail SMTP ({settings.smtp_host}:{settings.smtp_port})")
 
     if not settings.mail_configured:
         print("\n❌ GMAIL_APP_PASSWORD abhi configured nahi hai (ya default placeholder hai).")

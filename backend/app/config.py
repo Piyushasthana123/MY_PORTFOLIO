@@ -25,6 +25,8 @@ class Settings(BaseSettings):
     mail_to: str = "piyushasthana444@gmail.com"
     smtp_host: str = "smtp.gmail.com"
     smtp_port: int = 587
+    resend_api_key: str = ""
+    web3forms_access_key: str = ""
     rate_limit_requests: int = 5
     rate_limit_window_seconds: int = 900
 
@@ -36,6 +38,8 @@ class Settings(BaseSettings):
 
     @property
     def mail_configured(self) -> bool:
+        if bool(self.resend_api_key or self.web3forms_access_key):
+            return True
         is_placeholder = "your_" in self.gmail_app_password.lower() or "example" in self.gmail_app_password.lower()
         return bool(self.gmail_address and self.gmail_app_password and not is_placeholder)
 
